@@ -11,7 +11,7 @@ data:
 proxy:
   # matches the internal_port in fly.toml
   addr: ':${INTERNAL_PORT}'
-  target: 'localhost:${PORT}'
+  target: 'localhost:${QUERY_SERVER_PORT}'
   db: '${DATABASE_FILENAME}'
 
 # The lease section specifies how the cluster will be managed. We're using the
@@ -34,4 +34,4 @@ exec:
   - cmd: npx prisma migrate deploy
     if-candidate: true
 
-  - cmd: npm start
+  - cmd: ./other/process.sh
